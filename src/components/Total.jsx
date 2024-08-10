@@ -8,7 +8,6 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const data = [{ name: "Group A", value: 400 }];
 export default function Total({ userId }) {
-
   // Prepare graphData based on the structure of your input data
 
   const [accountData, setAccountData] = useState({});
@@ -34,35 +33,42 @@ export default function Total({ userId }) {
   });
 
   return (
-    <div style={{ position: "relative", width: "800px", height: "400px" }}>
-      <PieChart width={800} height={400}>
-        <Pie
-          data={graph}
-          cx={120}
-          cy={200}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
-          paddingAngle={
-            (1 -
-              parseInt(accountData?.depositAmount) /
-                parseInt(accountData?.savingTarget)) *
-            100
-          }
-          dataKey="monthlyTarget"
-        >
-          {graph?.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-
+    <div
+      style={{ position: "relative", width: "800px", height: "400px" }}
+      className="max-w-[100vw] overflow-x-auto"
+    >
+      <ResponsiveContainer>
+        <PieChart width={800} height={400}>
+          <Pie
+            data={graph}
+            cx={120}
+            cy={200}
+            innerRadius={60}
+            outerRadius={80}
+            fill="#8884d8"
+            paddingAngle={
+              (1 -
+                parseInt(accountData?.depositAmount) /
+                  parseInt(accountData?.savingTarget)) *
+              100
+            }
+            dataKey="monthlyTarget"
+          >
+            {graph?.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
       <div
         style={{
           position: "absolute",
           top: "50%",
-          left: "50%",
-          transform: "translate(-390%, -50%)",
+          left: "80%",
+          transform: "translate(-50%, -50%)",
           textAlign: "center",
         }}
       >
@@ -84,8 +90,6 @@ async function getDocument(db, collection, docId) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-  
-
     return docSnap.data();
   } else {
     console.log("No such document!");
