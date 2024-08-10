@@ -8,7 +8,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const data = [{ name: "Group A", value: 400 }];
 export default function Total({ userId }) {
-  console.log("userId", userId);
+
   // Prepare graphData based on the structure of your input data
 
   const [accountData, setAccountData] = useState({});
@@ -84,7 +84,7 @@ async function getDocument(db, collection, docId) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
+  
 
     return docSnap.data();
   } else {

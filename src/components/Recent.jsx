@@ -15,7 +15,7 @@ export default function TransactionList({ userId }) {
     getAccountData();
   }, [userId]);
 
-  console.log("accountDATA", accountData);
+
 
   return (
     <div>
