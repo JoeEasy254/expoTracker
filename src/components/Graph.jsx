@@ -94,9 +94,8 @@ export default function Graph({ userId }) {
     };
   });
 
-
   return (
-    <div>
+    <div style={{ height: 500, overflowX: "auto" }}>
       <BarChart
         width={500}
         height={300}
