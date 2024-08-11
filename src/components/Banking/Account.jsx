@@ -95,63 +95,62 @@ export default function Account({ userId }) {
     }
   }
 
- async function setDepAmount() {
-   const docRef = doc(db, "accounts", userId);
+  async function setDepAmount() {
+    const docRef = doc(db, "accounts", userId);
 
-   try {
-     // Validate and parse the deposit amount
-     const parsedDepositAmount = parseInt(depositAmount);
+    try {
+      // Validate and parse the deposit amount
+      const parsedDepositAmount = parseInt(depositAmount);
 
-     if (isNaN(parsedDepositAmount) || parsedDepositAmount < 1) {
-       toast.error("Invalid deposit amount");
-       return;
-     }
+      if (isNaN(parsedDepositAmount) || parsedDepositAmount < 1) {
+        toast.error("Invalid deposit amount");
+        return;
+      }
 
-     // Retrieve the most up-to-date account data
-     const docSnap = await getDoc(docRef);
-     let account;
+      // Retrieve the most up-to-date account data
+      const docSnap = await getDoc(docRef);
+      let account;
 
-     if (docSnap.exists()) {
-       // Document exists, get the data
-       account = docSnap.data();
-     } else {
-       // Document doesn't exist, create a new one with initial deposit
-       account = { depositAmount: 0 };
-       await setDoc(docRef, account); // Create the document in Firestore
-     }
+      if (docSnap.exists()) {
+        // Document exists, get the data
+        account = docSnap.data();
+      } else {
+        // Document doesn't exist, create a new one with initial deposit
+        account = { depositAmount: 0 };
+        await setDoc(docRef, account); // Create the document in Firestore
+      }
 
-     // Ensure depositAmount property exists and update it
-     account.depositAmount += parsedDepositAmount;
+      // Ensure depositAmount property exists and update it
+      account.depositAmount += parsedDepositAmount;
 
-     // Update Firestore document with the new deposit amount
-     await updateDoc(docRef, { depositAmount: account.depositAmount });
+      // Update Firestore document with the new deposit amount
+      await updateDoc(docRef, { depositAmount: account.depositAmount });
 
-     // Update state with the new data
-     setAccountData(account);
+      // Update state with the new data
+      setAccountData(account);
 
-     // Clear input field
-     setDepositAmount("");
+      // Clear input field
+      setDepositAmount("");
 
-     // Record the deposit in a separate collection
-     const depositRecord = {
-       depositAmount: parsedDepositAmount,
-       date: new Date(),
-       userId: userId,
-     };
+      // Record the deposit in a separate collection
+      const depositRecord = {
+        depositAmount: parsedDepositAmount,
+        date: new Date(),
+        userId: userId,
+      };
 
-     await addDoc(collection(db, "deposits"), depositRecord);
+      await addDoc(collection(db, "deposits"), depositRecord);
 
-     // Show success message
-     toast.success("Deposit amount is set");
+      // Show success message
+      toast.success("Deposit amount is set");
 
-     // Optional: Refresh the page or navigate
-     navigate(0);
-   } catch (error) {
-     console.error("Failed to set deposit amount:", error);
-     toast.error("Failed to set deposit amount");
-   }
- }
-
+      // Optional: Refresh the page or navigate
+      navigate(0);
+    } catch (error) {
+      console.error("Failed to set deposit amount:", error);
+      toast.error("Failed to set deposit amount");
+    }
+  }
 
   async function setSavingTarget() {
     if (savingTargetAmount < 1) {
@@ -244,14 +243,6 @@ export default function Account({ userId }) {
                     Set Target
                   </Button>
                 </div>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CalendarIcon className="h-4 w-4" />
-                <span>Last deposit: June 15, 2024</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CalendarIcon className="h-4 w-4" />
-                <span>Next withdrawal: July 1, 2024</span>
               </div>
             </CardFooter>
           </Card>
