@@ -6,6 +6,7 @@ import { auth, db } from "@/lib/firebase/config";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { ChromeIcon, MountainIcon } from "lucide-react";
 const provider = new GoogleAuthProvider();
 export default function SignIn() {
   const [user, setUser] = useState("");
@@ -59,14 +60,23 @@ export default function SignIn() {
     }
   };
   return (
-    <div className="flex justify-center items-center h-[100vh]">
-      <Card className="border ">
-        <CardContent>
-          <Button variant="secondary" onClick={onSignIn}>
-            Sign In
+    
+
+
+ <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-md text-center">
+        <div className="space-y-4">
+          <MountainIcon className="mx-auto h-12 w-12 text-primary" />
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Welcome to ExpoTrack</h1>
+          <p className="text-muted-foreground">Effortlessly track your expenses and stay on top of your finances.</p>
+        </div>
+        <div className="mt-6">
+          <Button onClick={onSignIn} variant="outline" className="flex w-full items-center justify-center gap-2">
+            <ChromeIcon className="h-5 w-5" />
+            Sign in with Google
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
