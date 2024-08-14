@@ -23,6 +23,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
 import { useNavigate } from "react-router-dom";
+import { useLoader } from "@/context/LoaderContext";
 
 export default function Account({ userId }) {
   const navigate = useNavigate();
@@ -30,11 +31,14 @@ export default function Account({ userId }) {
   const [depositAmount, setDepositAmount] = useState("");
   const [savingTargetAmount, setSavingTargetAmount] = useState("");
   const [accountData, setAccountData] = useState(null);
+  const { startLoading, stopLoading, loading } = useLoader();
 
   async function getAccountData() {
+    startLoading();
     const data = await getDocument(db, "accounts", userId);
 
     setAccountData(data);
+    stopLoading();
   }
 
   useEffect(() => {
@@ -257,7 +261,7 @@ async function getDocument(db, collection, docId) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
+   
 
     return docSnap.data();
   } else {

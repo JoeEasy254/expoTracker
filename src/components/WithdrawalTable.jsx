@@ -15,8 +15,6 @@ export default function TransactionList({ userId }) {
     getAccountData();
   }, [userId]);
 
-
-
   return (
     <div>
       <h1 className="my-3 italic ">Withdrawals</h1>
@@ -27,6 +25,7 @@ export default function TransactionList({ userId }) {
               <th class="p-2 text-left">Date</th>
               <th class="p-2 text-left">Amount</th>
               <th class="p-2 text-left">Type</th>
+              <th class="p-2 text-left">Reason</th>
               {/* <th class="p-2 text-left">Actions</th> */}
             </tr>
           </thead>
@@ -38,6 +37,7 @@ export default function TransactionList({ userId }) {
                 <td class="p-2">
                   <Badge variant="destructive"> withdraw</Badge>
                 </td>
+                <td class="p-2">{data?.reason}</td>
                 {/* <td class="p-2">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">
                     View

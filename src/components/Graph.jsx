@@ -10,53 +10,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
 } from "recharts";
-
-const data = [
-  {
-    name: "January",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-  {
-    name: "February",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-  {
-    name: "March",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-  {
-    name: "April",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-  {
-    name: "May",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-  {
-    name: "June",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-  {
-    name: "July",
-    MonthlyTarget: 4000,
-    saving: 2400,
-    amt: 2400,
-  },
-];
 
 export default function Graph({ userId }) {
   const [graphData, setGraphData] = useState([]);
@@ -120,7 +74,7 @@ export default function Graph({ userId }) {
         <Bar
           dataKey="monthlyTarget"
           fill="#82ca9d"
-          activeBar={<Rectangle fill="gold" stroke="purple" />}
+          activeBar={<Rectangle fill="gold" stroke="#82ca9d" />}
         />
       </BarChart>
     </div>

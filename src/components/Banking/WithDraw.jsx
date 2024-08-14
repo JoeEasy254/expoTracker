@@ -34,10 +34,12 @@ export default function Withdraw({ userId }) {
     const data = await getDocument(db, "accounts", userId);
 
     setAccountData(data);
+       stopLoading();
   }
 
   useEffect(() => {
     getAccountData();
+
   }, [userId]);
 
   async function executeWithdrawal(e) {
