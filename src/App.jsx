@@ -6,10 +6,12 @@ import Total from "./components/Total";
 import WithdrawalTable from "./components/WithdrawalTable";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./lib/firebase/config";
 import { useNavigate } from "react-router-dom";
 import { useLoader } from "./context/LoaderContext";
+import {  LogOutIcon } from "lucide-react";
+import { Button } from "./components/ui/button";
 
 function App() {
   const { loading, startLoading } = useLoader();
@@ -28,11 +30,29 @@ function App() {
     });
   }, []);
 
+  const signOutHandler = () => {
+    try {
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+          window.location.href = "/sign-in";
+        })
+        .catch((error) => {
+          // An error happened.
+        });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   return (
     <>
       <Toaster />
-      <div className="m-3">
+      <div className="my-4 mx-4 flex gap-x-3 items-center">
         <ModeToggle />
+        <Button onClick={signOutHandler} variant="destructive">
+          <LogOutIcon />
+        </Button>
       </div>
 
       <div

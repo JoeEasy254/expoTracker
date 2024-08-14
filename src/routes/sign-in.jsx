@@ -60,22 +60,31 @@ export default function SignIn() {
     }
   };
   return (
-    
-
-
- <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-md text-center">
         <div className="space-y-4">
           <MountainIcon className="mx-auto h-12 w-12 text-primary" />
-          <h1 className="text-3xl font-bold tracking-tight text-foreground">Welcome to ExpoTrack</h1>
-          <p className="text-muted-foreground">Effortlessly track your expenses and stay on top of your finances.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            Welcome to ExpoTrack
+          </h1>
+          <p className="text-muted-foreground">
+            Effortlessly track your expenses and stay on top of your finances.
+          </p>
         </div>
         <div className="mt-6">
-          <Button onClick={onSignIn} variant="outline" className="flex w-full items-center justify-center gap-2">
+          <Button
+            onClick={onSignIn}
+            variant="outline"
+            className="flex w-full items-center justify-center gap-2"
+          >
             <ChromeIcon className="h-5 w-5" />
             Sign in with Google
           </Button>
         </div>
+
+        <h1 className="italic text-sm text-center my-5">
+          Developed by JmLabs Reach: +254759689541 Email:ngugimuchene@gmail.com
+        </h1>
       </div>
     </div>
   );
