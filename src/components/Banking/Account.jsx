@@ -34,7 +34,7 @@ export default function Account({ userId }) {
   const { startLoading, stopLoading, loading } = useLoader();
 
   async function getAccountData() {
-    startLoading();
+   
     const data = await getDocument(db, "accounts", userId);
 
     setAccountData(data);

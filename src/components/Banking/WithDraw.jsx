@@ -34,12 +34,11 @@ export default function Withdraw({ userId }) {
     const data = await getDocument(db, "accounts", userId);
 
     setAccountData(data);
-       stopLoading();
+    stopLoading();
   }
 
   useEffect(() => {
     getAccountData();
-
   }, [userId]);
 
   async function executeWithdrawal(e) {
@@ -169,8 +168,6 @@ async function getDocument(db, collection, docId) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-
     return docSnap.data();
   } else {
     console.log("No such document!");

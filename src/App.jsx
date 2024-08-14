@@ -12,9 +12,13 @@ import { useNavigate } from "react-router-dom";
 import { useLoader } from "./context/LoaderContext";
 
 function App() {
-  const { loading } = useLoader();
+  const { loading, startLoading } = useLoader();
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    startLoading();
+  }, []);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
